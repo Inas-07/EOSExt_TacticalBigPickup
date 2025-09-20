@@ -2,10 +2,10 @@
 using BepInEx.Unity.IL2CPP;
 using ExtraObjectiveSetup.Utils;
 using ExtraObjectiveSetup.JSON;
-using GTFO.API;
+using ExtraObjectiveSetup.JSON.MTFOPartialData;
 using HarmonyLib;
 
-namespace EOSExt.NavigationalSpline
+namespace EOSExt.TacticalBigPickup
 {
     [BepInDependency("dev.gtfomodding.gtfo-api", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("GTFO.FloLib", BepInDependency.DependencyFlags.HardDependency)]
@@ -17,7 +17,7 @@ namespace EOSExt.NavigationalSpline
     public class EntryPoint: BasePlugin
     {
         public const string AUTHOR = "Inas";
-        public const string PLUGIN_NAME = "EOSExt.NavigationalSpline";
+        public const string PLUGIN_NAME = "EOSExt.TacticalBigPickup";
         public const string VERSION = "1.0.0";
 
         private Harmony m_Harmony;
@@ -26,10 +26,10 @@ namespace EOSExt.NavigationalSpline
         {
             SetupManagers();
 
-            m_Harmony = new Harmony("EOSExt.NavigationalSpline");
+            m_Harmony = new Harmony("EOSExt.TacticalBigPickup");
             m_Harmony.PatchAll();
 
-            EOSLogger.Log("ExtraObjectiveSetup.NavigationalSpline loaded.");
+            EOSLogger.Log("ExtraObjectiveSetup.TacticalBigPickup loaded.");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace EOSExt.NavigationalSpline
         /// </summary>
         private void SetupManagers()
         {
-            NavigationalSplineManager.Current.Init();
+
         }
     }
 }
