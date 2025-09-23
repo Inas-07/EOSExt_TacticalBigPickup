@@ -20,19 +20,29 @@ namespace EOSExt.TacticalBigPickup.Patches
         public const string BIG_PICKUP_FOG_BEACON_NAME = "Carry_FogBeacon - ConstantFog";
         public const string BIG_PICKUP_OBSERVER_NAME = "Carry_Observer";
 
+        //[HarmonyPostfix]
+        //[HarmonyPatch(typeof(LG_PickupItem), nameof(LG_PickupItem.SetupBigPickupItemWithItemId))]
+        //private static void Post_Setup(LG_PickupItem __instance, uint itemId)
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(LG_PickupItem), nameof(LG_PickupItem.SetupBigPickupItemWithItemId))]
-        private static void Post_SetupBigPickupItemWithItemId(LG_PickupItem __instance, uint itemId)
+        [HarmonyPatch(typeof(CarryItemPickup_Core), nameof(CarryItemPickup_Core.Setup))]
+        private static void Post_Setup(CarryItemPickup_Core __instance)
         {
-            string itemName = GameDataBlockBase<ItemDataBlock>.GetBlock(itemId)?.name ?? null;
 
-            switch (itemName)
+
+            SetupFunction();
+
+            void SetupFunction()
             {
-                case BIG_PICKUP_FOG_BEACON_NAME:
-                    BigPickupFogBeaconManager.SetupAsFogBeacon(__instance); break;
-                case BIG_PICKUP_OBSERVER_NAME:
-                    EnemyTaggerSettingManager.Current.SetupAsObserver(__instance);
-                    break;
+                string itemName = GameDataBlockBase<ItemDataBlock>.GetBlock(itemId)?.name ?? null;
+
+                switch (itemName)
+                {
+                    case BIG_PICKUP_FOG_BEACON_NAME:
+                        BigPickupFogBeaconManager.SetupAsFogBeacon(__instance); break;
+                    case BIG_PICKUP_OBSERVER_NAME:
+                        EnemyTaggerSettingManager.Current.SetupAsObserver(__instance);
+                        break;
+                }
             }
         }
 

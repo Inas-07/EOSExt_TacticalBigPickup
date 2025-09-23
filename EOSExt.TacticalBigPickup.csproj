@@ -45,4 +45,7 @@
   <ItemGroup>
     <None Include="Dependencies.props" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Functions\Generic\" />
+  </ItemGroup>
 </Project>
