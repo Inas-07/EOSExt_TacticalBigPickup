@@ -1,0 +1,55 @@
+﻿using EOSExt.TacticalBigPickup.Functions.Generic.BigPickup;
+using EOSExt.TacticalBigPickup.Managers;
+using ExtraObjectiveSetup.BaseClasses;
+using ExtraObjectiveSetup.Utils;
+using GTFO.API;
+using LevelGeneration;
+using Player;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
+{
+    public class EventsOnBigPickupManager : GenericExpeditionDefinitionManager<BigPickupCustom>
+    {
+        public static EventsOnBigPickupManager Current { get; } = new();
+
+        protected override string DEFINITION_NAME => "EventsOnBigPickup";
+
+        private void Build(BigPickupCustom def)
+        {
+            var itemsByZone = BigPickupItemManager.Current.GetItemsOf(def.ItemId);
+            foreach(var b in def.BigPickups)
+            {
+                if(!itemsByZone.TryGetValue(b.GlobalZoneIndexTuple(), out var items))
+                {
+                    EOSLogger.Error($"EventsOnBigPickup: zone not found {b.GlobalZoneIndexTuple()}");
+                    continue;
+                }
+
+                if(b.Index < 0 || b.Index >= items.Count)
+                {
+                    EOSLogger.Error($"EventsOnBigPickup: itemID {def.ItemId}, index {b.Index} is invalid - there're {items.Count} items in {b.GlobalZoneIndexTuple()} - valid value falls in range [0, {items.Count - 1})");
+                    continue;
+                }
+
+                var item = items[b.Index];
+                BigPickupCustomHelper.Setup(item, b);
+            }
+        }
+
+        private void Build()
+        {
+            if (!definitions.TryGetValue(RundownManager.ActiveExpedition.LevelLayoutData, out var defs)) return;
+            defs.Definitions.ForEach(Build);
+        }
+
+        public EventsOnBigPickupManager() : base() 
+        {
+            LevelAPI.OnBuildDone += Build;
+        }
+    }
+}

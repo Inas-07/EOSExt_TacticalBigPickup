@@ -29,6 +29,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets.cs" />
+    <Compile Include="Functions\Generic\BigPickup\BigPickupCustomHelper.cs" />
+    <Compile Include="Functions\Generic\BigPickup\BigPickupFunctionEnum.cs" />
+    <Compile Include="Functions\Generic\BigPickup\BigPickupStates.cs" />
+    <Compile Include="Functions\Generic\BigPickup\BigPickupStateEvent.cs" />
+    <Compile Include="Functions\Generic\BigPickup\BigPickupCustom.cs" />
+    <Compile Include="Functions\Generic\BigPickup\EventsOnBigPickupManager.cs" />
+    <Compile Include="Managers\BigPickupItemManager.cs" />
+    <Compile Include="Managers\ItemInLevelUtils.cs" />
+    <Compile Include="Managers\PickupItemManager.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Functions\EnemyTagger\EnemyTaggerComponent.cs" />
     <Compile Include="Functions\EnemyTagger\EnemyTaggerSetting.cs" />
@@ -44,8 +53,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies.props" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Functions\Generic\" />
   </ItemGroup>
 </Project>

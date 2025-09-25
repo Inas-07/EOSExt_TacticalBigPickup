@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using ExtraObjectiveSetup.BaseClasses;
 using ExtraObjectiveSetup.Utils;
+using EOSExt.TacticalBigPickup.Definitions.EnemyTagger;
 
 namespace EOSExt.TacticalBigPickup.Functions.EnemyTagger
 {

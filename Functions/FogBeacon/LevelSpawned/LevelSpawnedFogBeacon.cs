@@ -1,11 +1,12 @@
 ﻿using AIGraph;
+using EOSExt.TacticalBigPickup.Functions.FogBeacon.LevelSpawned;
 using ExtraObjectiveSetup.Utils;
 using GameData;
 using GTFO.API;
 using LevelGeneration;
 using UnityEngine;
 
-namespace EOSExt.TacticalBigPickup.Functions.FogBeacon.LevelSpawned
+namespace EOSExt.TacticalBigPickup.Definitions.FogBeacon.LevelSpawned
 {
     public class LevelSpawnedFogBeacon
     {
