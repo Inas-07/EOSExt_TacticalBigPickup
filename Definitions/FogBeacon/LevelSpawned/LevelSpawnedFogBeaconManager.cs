@@ -1,4 +1,4 @@
-﻿using EOSExt.TacticalBigPickup.Definitions.FogBeacon.LevelSpawned;
+﻿using EOSExt.TacticalBigPickup.Impl.FogBeacon.LeveSpawned;
 using ExtraObjectiveSetup.BaseClasses;
 using ExtraObjectiveSetup.ExtendedWardenEvents;
 using ExtraObjectiveSetup.Utils;

@@ -4,6 +4,9 @@ using ExtraObjectiveSetup.Utils;
 using ExtraObjectiveSetup.JSON;
 using ExtraObjectiveSetup.JSON.MTFOPartialData;
 using HarmonyLib;
+using EOSExt.TacticalBigPickup.Functions.EnemyTagger;
+using EOSExt.TacticalBigPickup.Functions.FogBeacon.BigPickup;
+using EOSExt.TacticalBigPickup.Functions.FogBeacon.LevelSpawned;
 
 namespace EOSExt.TacticalBigPickup
 {
@@ -37,7 +40,9 @@ namespace EOSExt.TacticalBigPickup
         /// </summary>
         private void SetupManagers()
         {
-
+            EnemyTaggerSettingManager.Current.Init();
+            LevelSpawnedFogBeaconManager.Current.Init();
+            BigPickupFogBeaconSettingManager.Current.Init();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
+namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup.Definition
 {
     public class BigPickupStateEvent
     {

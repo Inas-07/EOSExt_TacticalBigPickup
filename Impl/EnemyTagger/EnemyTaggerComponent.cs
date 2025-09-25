@@ -9,7 +9,7 @@ using FX_EffectSystem;
 using Il2CppInterop.Runtime.Injection;
 using ExtraObjectiveSetup.Utils;
 
-namespace EOSExt.TacticalBigPickup.Definitions.EnemyTagger
+namespace EOSExt.TacticalBigPickup.Impl.EnemyTagger
 {
     // unsynced state
     public enum eEnemyTaggerState

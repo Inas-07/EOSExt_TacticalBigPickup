@@ -1,4 +1,5 @@
-﻿using EOSExt.TacticalBigPickup.Functions.EnemyTagger;
+﻿using EOSExt.TacticalBigPickup.Functions;
+using EOSExt.TacticalBigPickup.Functions.EnemyTagger;
 using EOSExt.TacticalBigPickup.Functions.FogBeacon.BigPickup;
 using EOSExt.TacticalBigPickup.Managers;
 using GameData;
@@ -24,26 +25,8 @@ namespace EOSExt.TacticalBigPickup.Patches
         [HarmonyPostfix]
         [HarmonyPatch(typeof(LG_PickupItem), nameof(LG_PickupItem.SetupBigPickupItemWithItemId))]
         private static void Post_Setup(LG_PickupItem __instance, uint itemId)
-        //[HarmonyPostfix]
-        //[HarmonyPatch(typeof(CarryItemPickup_Core), nameof(CarryItemPickup_Core.Setup))]
-        //private static void Post_Setup(CarryItemPickup_Core __instance)
         {
             BigPickupItemManager.Current.Register(__instance);
-
-            //SetupFunction();
-
-            //void SetupFunction()
-            //{
-            //    string itemName = GameDataBlockBase<ItemDataBlock>.GetBlock(itemId)?.name ?? null;
-
-            //    switch (itemName)
-            //    {
-            //        case BIG_PICKUP_FOG_BEACON_NAME:
-            //            BigPickupFogBeaconManager.SetupAsFogBeacon(__instance); break;
-            //        case BIG_PICKUP_OBSERVER_NAME:
-            //            EnemyTaggerSettingManager.Current.SetupAsObserver(__instance); break;
-            //    }
-            //}
         }
 
     }

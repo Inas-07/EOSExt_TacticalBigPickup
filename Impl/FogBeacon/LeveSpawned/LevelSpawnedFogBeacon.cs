@@ -6,7 +6,7 @@ using GTFO.API;
 using LevelGeneration;
 using UnityEngine;
 
-namespace EOSExt.TacticalBigPickup.Definitions.FogBeacon.LevelSpawned
+namespace EOSExt.TacticalBigPickup.Impl.FogBeacon.LeveSpawned
 {
     public class LevelSpawnedFogBeacon
     {

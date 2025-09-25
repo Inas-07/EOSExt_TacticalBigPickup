@@ -1,4 +1,5 @@
-﻿using EOSExt.TacticalBigPickup.Functions.Generic.BigPickup;
+﻿using EOSExt.TacticalBigPickup.Functions.Generic.BigPickup.Definition;
+using EOSExt.TacticalBigPickup.Impl;
 using EOSExt.TacticalBigPickup.Managers;
 using ExtraObjectiveSetup.BaseClasses;
 using ExtraObjectiveSetup.Utils;
@@ -13,16 +14,16 @@ using System.Threading.Tasks;
 
 namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
 {
-    public class EventsOnBigPickupManager : GenericExpeditionDefinitionManager<BigPickupCustom>
+    public class EventsOnBigPickupManager : GenericExpeditionDefinitionManager<BigPickups>
     {
         public static EventsOnBigPickupManager Current { get; } = new();
 
         protected override string DEFINITION_NAME => "EventsOnBigPickup";
 
-        private void Build(BigPickupCustom def)
+        private void Build(BigPickups def)
         {
             var itemsByZone = BigPickupItemManager.Current.GetItemsOf(def.ItemId);
-            foreach(var b in def.BigPickups)
+            foreach(var b in def.BigPickupItems)
             {
                 if(!itemsByZone.TryGetValue(b.GlobalZoneIndexTuple(), out var items))
                 {
@@ -38,6 +39,8 @@ namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
 
                 var item = items[b.Index];
                 BigPickupCustomHelper.Setup(item, b);
+
+                CustomBigPickupFunctionImplementor.SetupCustomBigPickupFunctions(item.GetLGPickupItem(), b.Functions);
             }
         }
 

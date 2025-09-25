@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
+namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup.Definition
 {
-    public class BigPickupCustom
+    public class BigPickups
     {
         public uint ItemId { get; set; } = 0;
 
-        public List<BigPickupStates> BigPickups { get; set; } = new();
+        public List<BigPickupCustomization> BigPickupItems { get; set; } = new();
     }
 }

@@ -15,5 +15,7 @@ namespace EOSExt.TacticalBigPickup.Managers
             var sn = item.CourseNode;
             return (sn.m_dimension.DimensionIndex, sn.LayerType, sn.m_zone.LocalIndex);
         }
+
+        public static LG_PickupItem GetLGPickupItem(this ItemInLevel item) => item.GetComponentInParent<LG_PickupItem>();
     }
 }

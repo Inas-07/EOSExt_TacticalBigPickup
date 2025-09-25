@@ -1,4 +1,4 @@
-﻿using GTFO.API.Utilities;
+﻿using EOSExt.TacticalBigPickup.Functions.EnemyTagger;
 using GTFO.API;
 using LevelGeneration;
 using Player;
@@ -8,44 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using ExtraObjectiveSetup.BaseClasses;
-using ExtraObjectiveSetup.Utils;
-using EOSExt.TacticalBigPickup.Definitions.EnemyTagger;
 
-namespace EOSExt.TacticalBigPickup.Functions.EnemyTagger
+namespace EOSExt.TacticalBigPickup.Impl.EnemyTagger
 {
-    public class EnemyTaggerSettingManager: GenericDefinitionManager<EnemyTaggerSetting>
+    internal class EnemyTaggerImplementor : CustomBigPickupFunctionImplementor
     {
-        public static EnemyTaggerSettingManager Current { get; } = new();
+        protected override string FunctionName => "EnemyTagger";
 
-        protected override string DEFINITION_NAME => "EnemyTagger";
-
-        private static readonly EnemyTaggerSetting DEFAULT = new();
-
-        public EnemyTaggerSetting SettingForCurrentLevel { private set; get; } = DEFAULT;
-
-        protected override void FileChanged(LiveEditEventArgs e)
+        public override void SetupCustomBigPickupFunction(LG_PickupItem __instance)
         {
-            if (GameStateManager.IsInExpedition)
-            {
-                UpdateSetting();
-            }
-        }
-
-        private void UpdateSetting()
-        {
-            uint mainLevelLayout = RundownManager.ActiveExpedition.LevelLayoutData;
-            SettingForCurrentLevel = definitions.ContainsKey(mainLevelLayout) ? definitions[mainLevelLayout].Definition : DEFAULT;
-            EOSLogger.Debug($"EnemyTaggerSettingManager: updated setting for level with main level layout id {mainLevelLayout}");
-        }
-
-        private List<GameObject> obsVisuals = new();
-
-        public IEnumerable<GameObject> OBSVisuals => obsVisuals;
-
-        public void SetupAsObserver(LG_PickupItem __instance)
-        {
-            var setting = SettingForCurrentLevel;
+            var setting = EnemyTaggerSettingManager.Current.SettingForCurrentLevel;
 
             CarryItemPickup_Core core = __instance.m_root.GetComponentInChildren<CarryItemPickup_Core>();
             Interact_Pickup_PickupItem interact = core.m_interact.Cast<Interact_Pickup_PickupItem>();
@@ -114,6 +86,10 @@ namespace EOSExt.TacticalBigPickup.Functions.EnemyTagger
             });
         }
 
+        private List<GameObject> obsVisuals = new();
+
+        public IEnumerable<GameObject> OBSVisuals => obsVisuals;
+
         private void AddOBSVisualRenderers()
         {
             //foreach (var go in OBSVisuals)
@@ -136,17 +112,11 @@ namespace EOSExt.TacticalBigPickup.Functions.EnemyTagger
             obsVisuals.Clear();
         }
 
-        private EnemyTaggerSettingManager()
+
+        internal EnemyTaggerImplementor(): base()
         {
             LevelAPI.OnBuildStart += Clear;
             LevelAPI.OnLevelCleanup += Clear;
-            LevelAPI.OnEnterLevel += AddOBSVisualRenderers;
         }
-
-        static EnemyTaggerSettingManager()
-        {
-            Current = new();
-        }
-
     }
 }

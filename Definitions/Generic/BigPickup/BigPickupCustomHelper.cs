@@ -1,4 +1,5 @@
-﻿using ExtraObjectiveSetup.Utils;
+﻿using EOSExt.TacticalBigPickup.Functions.Generic.BigPickup.Definition;
+using ExtraObjectiveSetup.Utils;
 using GameData;
 using GTFO.API.Extensions;
 using Il2CppInterop.Runtime.Injection;
@@ -49,7 +50,7 @@ namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
 
         }
 
-        public static void Setup(ItemInLevel item, BigPickupStates states)
+        public static void Setup(ItemInLevel item, BigPickupCustomization states)
         {
             var h = item.gameObject.GetComponent<BigPickupCustomHelper>();
 
