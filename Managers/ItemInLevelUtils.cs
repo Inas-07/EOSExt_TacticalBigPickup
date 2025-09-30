@@ -12,8 +12,14 @@ namespace EOSExt.TacticalBigPickup.Managers
     {
         public static (eDimensionIndex dim, LG_LayerType layer, eLocalZoneIndex localIndex) GetGlobalZoneIndex(this ItemInLevel item)
         {
-            var sn = item.CourseNode;
-            return (sn.m_dimension.DimensionIndex, sn.LayerType, sn.m_zone.LocalIndex);
+            if(item.pItemData.originCourseNode.TryGet(out var sn))
+            {
+                return (sn.m_dimension.DimensionIndex, sn.LayerType, sn.m_zone.LocalIndex);
+            }
+            else
+            {
+                throw new NullReferenceException("originCourseNode is null");
+            }
         }
 
         public static LG_PickupItem GetLGPickupItem(this ItemInLevel item) => item.GetComponentInParent<LG_PickupItem>();

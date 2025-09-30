@@ -20,7 +20,7 @@ namespace EOSExt.TacticalBigPickup.Managers
 
         public virtual void Register(LG_PickupItem item)
         {
-            var component = item.GetComponent<T>();
+            var component = item.m_root.GetComponentInChildren<T>();
             Register(component);
         }
 

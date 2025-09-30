@@ -1,4 +1,5 @@
 ﻿using EOSExt.TacticalBigPickup.Functions.EnemyTagger;
+using ExtraObjectiveSetup.Utils;
 using GTFO.API;
 using LevelGeneration;
 using Player;
@@ -15,9 +16,16 @@ namespace EOSExt.TacticalBigPickup.Impl.EnemyTagger
     {
         protected override string FunctionName => "EnemyTagger";
 
-        public override void SetupCustomBigPickupFunction(LG_PickupItem __instance)
+        public override void SetupCustomBigPickupFunction(LG_PickupItem __instance, uint settingID)
         {
-            var setting = EnemyTaggerSettingManager.Current.SettingForCurrentLevel;
+            var def = EnemyTaggerSettingManager.Current.GetDefinition(settingID);
+            if(def == null || def.Definition == null)
+            {
+                EOSLogger.Error($"EnemyTagger: setting ID {settingID} not found");
+                return;
+            }
+
+            var setting = def.Definition;
 
             CarryItemPickup_Core core = __instance.m_root.GetComponentInChildren<CarryItemPickup_Core>();
             Interact_Pickup_PickupItem interact = core.m_interact.Cast<Interact_Pickup_PickupItem>();

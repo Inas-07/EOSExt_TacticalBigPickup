@@ -7,6 +7,8 @@ using HarmonyLib;
 using EOSExt.TacticalBigPickup.Functions.EnemyTagger;
 using EOSExt.TacticalBigPickup.Functions.FogBeacon.BigPickup;
 using EOSExt.TacticalBigPickup.Functions.FogBeacon.LevelSpawned;
+using EOSExt.TacticalBigPickup.Functions.Generic.BigPickup;
+using GTFO.API;
 
 namespace EOSExt.TacticalBigPickup
 {
@@ -41,8 +43,12 @@ namespace EOSExt.TacticalBigPickup
         private void SetupManagers()
         {
             EnemyTaggerSettingManager.Current.Init();
-            LevelSpawnedFogBeaconManager.Current.Init();
+            LevelSpawnedFogBeaconSettingManager.Current.Init();
             BigPickupFogBeaconSettingManager.Current.Init();
+            BigPickupCustomizationManager.Current.Init();
+
+            AssetAPI.OnAssetBundlesLoaded += Assets.Init;
+
         }
     }
 }

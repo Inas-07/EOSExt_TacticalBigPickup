@@ -31,9 +31,10 @@
     <Compile Include="Assets.cs" />
     <Compile Include="Definitions\Generic\BigPickup\BigPickupCustomHelper.cs" />
     <Compile Include="Definitions\Generic\BigPickup\Definition\BigPickupCustomization.cs" />
+    <Compile Include="Definitions\Generic\BigPickup\Definition\BigPickupFunction.cs" />
     <Compile Include="Definitions\Generic\BigPickup\Definition\BigPickupStateEvent.cs" />
     <Compile Include="Definitions\Generic\BigPickup\Definition\BigPickups.cs" />
-    <Compile Include="Definitions\Generic\BigPickup\EventsOnBigPickupManager.cs" />
+    <Compile Include="Definitions\Generic\BigPickup\BigPickupCustomizationManager.cs" />
     <Compile Include="Impl\CustomBigPickupFunctionImplementor.cs" />
     <Compile Include="Impl\EnemyTagger\EnemyTaggerImplementor.cs" />
     <Compile Include="Impl\FogBeacon\BigPickup\BigPickupFogBeaconImplementor.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="Definitions\FogBeacon\BigPickup\BigPickupFogBeaconSettingManager.cs" />
     <Compile Include="Impl\FogBeacon\LeveSpawned\LevelSpawnedFogBeacon.cs" />
     <Compile Include="Definitions\FogBeacon\LevelSpawned\LevelSpawnedFogBeaconDefinition.cs" />
-    <Compile Include="Definitions\FogBeacon\LevelSpawned\LevelSpawnedFogBeaconManager.cs" />
+    <Compile Include="Definitions\FogBeacon\LevelSpawned\LevelSpawnedFogBeaconSettingManager.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Patches\FixLevelSpawnedFogBeaconRange.cs" />
     <Compile Include="Patches\SetupBigPickupItemWithItemId.cs" />

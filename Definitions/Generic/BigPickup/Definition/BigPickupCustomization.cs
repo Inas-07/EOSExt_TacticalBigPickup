@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EOSExt.TacticalBigPickup.Definitions.Generic.BigPickup.Definition;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup.Definition
     {
         public int Index { get; set; } = 0;
 
-        public List<string> Functions { get; set; } = new();
+        public List<BigPickupFunction> Functions { get; set; } = new() { new() };
 
-        public List<BigPickupStateEvent> OnState { get; set; } = new();
+        public List<BigPickupStateEvent> OnState { get; set; } = new() { new() };
     }
 }

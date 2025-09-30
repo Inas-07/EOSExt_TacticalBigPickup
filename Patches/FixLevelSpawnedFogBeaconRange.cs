@@ -15,7 +15,7 @@ namespace EOSExt.TacticalBigPickup.Patches
         [HarmonyPatch(typeof(HeavyFogRepellerGlobalState), nameof(HeavyFogRepellerGlobalState.AttemptInteract))]
         private static void Post_HeavyFogRepellerGlobalState_AttemptInteract(HeavyFogRepellerGlobalState __instance)
         {
-            var LSFBDef = LevelSpawnedFogBeaconManager.Current.GetLSFBDef(__instance);
+            var LSFBDef = LevelSpawnedFogBeaconSettingManager.Current.GetLSFBDef(__instance);
             if (LSFBDef == null) return;
 
             __instance.m_repellerSphere.Range = LSFBDef.Range;

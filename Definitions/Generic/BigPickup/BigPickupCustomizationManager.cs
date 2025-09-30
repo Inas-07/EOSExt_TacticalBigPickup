@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
 {
-    public class EventsOnBigPickupManager : GenericExpeditionDefinitionManager<BigPickups>
+    public class BigPickupCustomizationManager : GenericExpeditionDefinitionManager<BigPickups>
     {
-        public static EventsOnBigPickupManager Current { get; } = new();
+        public static BigPickupCustomizationManager Current { get; } = new();
 
-        protected override string DEFINITION_NAME => "EventsOnBigPickup";
+        protected override string DEFINITION_NAME => "BigPickupCustomization";
 
         private void Build(BigPickups def)
         {
@@ -50,7 +50,7 @@ namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup
             defs.Definitions.ForEach(Build);
         }
 
-        public EventsOnBigPickupManager() : base() 
+        public BigPickupCustomizationManager() : base() 
         {
             LevelAPI.OnBuildDone += Build;
         }

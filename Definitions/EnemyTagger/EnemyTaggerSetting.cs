@@ -2,7 +2,6 @@
 {
     public class EnemyTaggerSetting
     {
-        public uint MainLevelLayout { set; get; } = 0;
         public float TimeToPickup { set; get; } = 1f;
         public float TimeToPlace { set; get; } = 1f;
         public float WarmupTime { set; get; } = 5f;

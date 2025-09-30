@@ -13,11 +13,11 @@ using UnityEngine;
 
 namespace EOSExt.TacticalBigPickup.Functions.FogBeacon.LevelSpawned
 {
-    public class LevelSpawnedFogBeaconManager : GenericExpeditionDefinitionManager<LevelSpawnedFogBeaconDefinition>
+    public class LevelSpawnedFogBeaconSettingManager : GenericExpeditionDefinitionManager<LevelSpawnedFogBeaconDefinition>
     {
-        public static LevelSpawnedFogBeaconManager Current { get; } = new();
+        public static LevelSpawnedFogBeaconSettingManager Current { get; } = new();
 
-        protected override string DEFINITION_NAME => "LevelSpawnedFogBeacon";
+        protected override string DEFINITION_NAME => "LevelSpawnedFogBeacon_EOS";
 
         private Dictionary<string, LevelSpawnedFogBeacon> LevelSpawnedFogBeacons { get; } = new();
 
@@ -83,7 +83,7 @@ namespace EOSExt.TacticalBigPickup.Functions.FogBeacon.LevelSpawned
         }
 
 
-        private LevelSpawnedFogBeaconManager() 
+        private LevelSpawnedFogBeaconSettingManager() 
         {
             LevelAPI.OnBuildStart += Clear;
             LevelAPI.OnLevelCleanup += Clear;
@@ -92,7 +92,7 @@ namespace EOSExt.TacticalBigPickup.Functions.FogBeacon.LevelSpawned
             EOSWardenEventManager.Current.AddEventDefinition(LSFBEvent.ToggleLevelSpawnedFogBeaconState.ToString(), (uint)LSFBEvent.ToggleLevelSpawnedFogBeaconState, ToggleLevelSpawnedFogBeaconState);
         }
 
-        static LevelSpawnedFogBeaconManager() { }
+        static LevelSpawnedFogBeaconSettingManager() { }
 
         public enum LSFBEvent
         {

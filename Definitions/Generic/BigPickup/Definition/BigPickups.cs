@@ -11,6 +11,6 @@ namespace EOSExt.TacticalBigPickup.Functions.Generic.BigPickup.Definition
     {
         public uint ItemId { get; set; } = 0;
 
-        public List<BigPickupCustomization> BigPickupItems { get; set; } = new();
+        public List<BigPickupCustomization> BigPickupItems { get; set; } = new() { new() };
     }
 }

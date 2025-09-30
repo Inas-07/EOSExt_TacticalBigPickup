@@ -134,7 +134,7 @@ namespace EOSExt.TacticalBigPickup.Impl.FogBeacon.LeveSpawned
                                 WardenObjectiveManager.CheckAndExecuteEventsOnTrigger(
                                     new WardenObjectiveEventData()
                                     {
-                                        Type = (eWardenObjectiveEventType)LevelSpawnedFogBeaconManager.LSFBEvent.ToggleLevelSpawnedFogBeaconState,
+                                        Type = (eWardenObjectiveEventType)LevelSpawnedFogBeaconSettingManager.LSFBEvent.ToggleLevelSpawnedFogBeaconState,
                                         WorldEventObjectFilter = WorldEventObjectFilter,
                                         Enabled = true,
                                         Delay = 1.1f // KillRepellerInstantly() makes repeller enter `Disabled` state for 1.0f seconds, so skipping it is required.

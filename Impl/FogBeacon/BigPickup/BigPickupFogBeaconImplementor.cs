@@ -1,4 +1,5 @@
 ﻿using EOSExt.TacticalBigPickup.Functions.FogBeacon.BigPickup;
+using ExtraObjectiveSetup.Utils;
 using Gear;
 using LevelGeneration;
 using Player;
@@ -15,8 +16,17 @@ namespace EOSExt.TacticalBigPickup.Impl.FogBeacon.BigPickup
     {
         protected override string FunctionName => "FogBeacon";
 
-        public override void SetupCustomBigPickupFunction(LG_PickupItem item)
+        public override void SetupCustomBigPickupFunction(LG_PickupItem item, uint settingID)
         {
+            var def = BigPickupFogBeaconSettingManager.Current.GetDefinition(settingID);
+            if(def == null || def.Definition == null)
+            {
+                EOSLogger.Error($"BigPickupFogBeacon: setting ID {settingID} not found");
+                return;
+            }
+
+            var setting = def.Definition;
+
             FogRepeller_Sphere fogRepFake = new GameObject("FogInstance_Beacon_Fake").AddComponent<FogRepeller_Sphere>();
             fogRepFake.InfiniteDuration = false;
             fogRepFake.LifeDuration = 99999f;
@@ -24,7 +34,6 @@ namespace EOSExt.TacticalBigPickup.Impl.FogBeacon.BigPickup
             fogRepFake.ShrinkDuration = 99999f;
             fogRepFake.Range = 1f;
 
-            var setting = BigPickupFogBeaconSettingManager.Current.SettingForCurrentLevel;
             FogRepeller_Sphere fogRepHold = new GameObject("FogInstance_Beacon_SmallLayer").AddComponent<FogRepeller_Sphere>();
             fogRepHold.InfiniteDuration = setting.RSHold.InfiniteDuration;
             fogRepHold.GrowDuration = setting.RSHold.GrowDuration;
